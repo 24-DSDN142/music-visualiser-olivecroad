@@ -12,7 +12,8 @@ let arms = map(drum,0,100,0,1);
 let sing = map(vocal,0,100,1,30);
 let DJ = map(other,0,100,0,20);
 let sway = map(drum,0,100,-7,8);
-let flash = map(other,0,100,-110,150)
+let flash = map(other,0,100,-110,150);
+let DJTHINGS = map(bass,0,100,0,256);
 strokeWeight(0)
  fill(138, 206, 0);
  if(counter>4100){fill(0,flash,0)}
@@ -149,108 +150,146 @@ strokeWeight(5);
 stroke(79, 128, 23);
 line(570,300,550-DJ,335);
 line (450,300,480-DJ,335)
-
-
-fill(176, 235, 94);
-// beginShape ()
-// curveVertex(100,300);
-// curveVertex(110,300);
-// curveVertex(130,320);
-// curveVertex(150,300);
-//endShape(CLOSE);
-
-//apple
-strokeWeight(3);
-line(160,500+bounce,140,475-(bounce));
-line(230,500+bounce,250,540+bounce);
-
 strokeWeight(0);
-fill(138, 206, 0);
-ellipse(180,487+bounce,65,80);
-ellipse(223,487+bounce,65,80);
 
-fill(138, 206, 0); // BRAT
-  stroke(0); // Black outline
-  strokeWeight(0);
+//DJ things that change colour
+fill(0,DJTHINGS,0);
+beginShape()
+vertex(600,345);
+vertex(630,325);
+vertex(780,325);
+vertex(810,345);
+endShape(CLOSE);
 
-  ellipse(200,500+bounce,100,100);
-  fill(108, 176, 0);
-  ellipse(200,468+bounce,20,20);
-  fill(79, 50, 23);
-  rect(200,454+bounce,10,30);
 
-  fill(0,0,0); //eyes
-  ellipse(180,490+bounce,10,10);
-  ellipse(220,490+bounce,10,10);
-  strokeWeight(2);
-  fill(138, 206, 0);
-  arc(200,510+bounce,15,15,0,180);
-  strokeWeight(0);
-  fill(237, 166, 194);
-  ellipse(175,508+bounce,15,15);
-  ellipse(225,508+bounce,15,15);
-
+for (let i=0; i<2; i++){
+  drawApple(150+(i*940),400,1+i,1+(2*i),bounce,sing);
+  drawApple(250+(i*740),450,2+i,1,bounce,sing);
+  drawApple(135+(i*970),500,1,3-i,bounce,sing);
+  drawApple(275+(i*690),530,3-i,1+i,bounce,sing);
+  drawApple(200+(i*840),570,1+i,1,bounce,sing);
+  drawApple(100+(i*1040),590,2-i,2-i,sway,sing);
+  drawApple(400+(i*440),530,1+i,3-i,bounce,sing);
+  drawApple(300+(i*640),580,2-i,1,bounce,sing);
+  drawApple(550+(i*140),560,1+(2*i),2,sway,sing);
+  drawApple(450+(i*340),580,3-(2*i),3,bounce,sing);
   
-  fill(0,0,0); //glasses
-  rect(200,480+(1.25*bounce),107,5);
-  arc(180,480+(1.25*bounce),30,40,0,180);
-  arc(220,480+(1.25*bounce),30,40,0,180);
-
- 
-
-  drawApple(950,450);
- 
-fill(59, 130, 21)
-beginShape(); //Apple 4
-vertex(1038, 488);
-bezierVertex(1026, 441, 1105, 447, 1098, 472);
-bezierVertex(1091, 448, 1167, 440, 1154, 489);
-bezierVertex(1150, 529, 1129, 557, 1100, 536);
-bezierVertex(1074, 559, 1046, 531, 1038, 489);
-endShape();
-
-fill(222, 210, 78)
-beginShape(); //Apple 5
-vertex(934, 553);
-bezierVertex(927, 520, 1004, 519, 994, 542);
-bezierVertex(986, 519, 1057, 519, 1058, 550);
-bezierVertex(1066, 611, 1017, 638, 995, 615);
-bezierVertex(974, 637, 933, 610, 932, 553);
-endShape();
-
-beginShape(); //Apple 6
-vertex(288+sway, 529);
-bezierVertex(285+sway, 480, 341+sway, 486, 354+sway, 511);
-bezierVertex(368+sway, 485, 423+sway, 476, 420+sway, 525);
-bezierVertex(418+sway, 584, 376+sway, 602, 359+sway, 583);
-bezierVertex(340+sway, 605, 292+sway, 588, 288+sway, 529);
-endShape();
-strokeWeight(3)
-arc(386+sway,530,20,20,180,0) //eye 1
-arc(325+sway,530,20,20,180,0) //eye 2
-fill(0,0,0);
-arc(355+sway,555,sing,sing,0,180) //mouth
-
-strokeWeight(0)
-fill(53, 117, 34);
-beginShape(); //Apple 7
-vertex(448, 544+bounce);
-bezierVertex(446, 507+bounce, 502, 501+bounce, 512, 527+bounce);
-bezierVertex(520, 499+bounce, 572, 504+bounce, 572, 547+bounce);
-bezierVertex(570, 588+bounce, 549, 625+bounce, 514, 607+bounce);
-bezierVertex(477, 628+bounce, 448, 593+bounce, 448, 543+bounce);
-endShape();
-  
-
+}
 }
 
-function drawApple(x,y){
-  fill(104, 179, 29)
+function drawApple(x,y,colour,type,bop,sing){
+  if (colour==1){
+    fill(104, 179, 29);
+    stroke(84,159,9);
+  }
+  else if (colour==2){
+    fill(128, 222, 73);
+    stroke(108,202,53);
+  }
+  else if (colour==3){
+    fill(247, 234, 84);
+    stroke(227,214,64);
+  }
+
+
+if (type==1){
+  strokeWeight(5);
+  line(x+50,y,x+60,(y-30)-bop)
+  strokeWeight(0);
+
+
   beginShape(); //Apple
-vertex(x-55, y-6);
-bezierVertex(x-62, y-49, x+6, y-47, x, y-25);
-bezierVertex(x-5, y-47, x+60, y-52, x+55, y-7);
-bezierVertex(x+59, y+24, x+38, y+75, x, y+41);
-bezierVertex(x-35, y+79, x-58, y+27, x-56, y-5);
+vertex(x-55, (y-6)+bop);
+bezierVertex(x-62, (y-49)+bop, x+6, (y-47)+bop, x, (y-25)+bop);
+bezierVertex(x-5, (y-47)+bop, x+60, (y-52)+bop, x+55, (y-7)+bop);
+bezierVertex(x+59, (y+24)+bop, x+38, (y+75)+bop, x, (y+41)+bop);
+bezierVertex(x-35, (y+79)+bop, x-58, (y+27)+bop, x-56, (y-5)+bop);
 endShape();
+//stem
+fill(117, 74, 30);
+  rect(x,y-35+bop,10,30);
+//leaf
+fill(63, 117, 30);
+  beginShape();
+vertex(x-24, (y-59)+bop);
+bezierVertex(x-23, y-39+bop, x-16, y-29+bop, x+3, y-24+bop);
+bezierVertex(x+12, y-44+bop, x+1, y-59+bop, x-22, y-60+bop);
+endShape();
+
+fill(0,0,0);
+ellipse(x-15,y+bop,25,25);
+ellipse(x+15,y+bop,25,25);
+stroke(0,0,0);
+strokeWeight(3);
+line((x-20),y+bop,(x+20),y+bop)
+arc(x,(y+20)+bop,20,20,0,180);
+strokeWeight(0);
+}
+else if(type==2){
+  strokeWeight(5);
+line(x+50,y,(x+60)+(bop*1.25),y-40);
+line(x-50,y,(x-60)+(bop*1.25),y-40);
+strokeWeight(0);
+
+  beginShape(); //Apple
+vertex((x-55)+bop, y-6);
+bezierVertex((x-62)+bop, y-49, (x+6)+bop, y-47, x+bop, y-25);
+bezierVertex((x-5)+bop, y-47, (x+60)+bop, y-52, (x+55)+bop, y-7);
+bezierVertex((x+59)+bop, y+24, (x+38)+bop, y+75, x+bop, y+41);
+bezierVertex((x-35)+bop, y+79, (x-58)+bop, y+27, (x-56)+bop, y-5);
+endShape();
+//stem
+fill(117, 74, 30);
+  rect(x+bop,y-35,10,30);
+//leaf
+fill(63, 117, 30);
+  beginShape();
+vertex(x-24+bop, y-59);
+bezierVertex(x-23+bop, y-39, x-16+bop, y-29, x+3+bop, y-24);
+bezierVertex(x+12+bop, y-44, x+1+bop, y-59, x-22+bop, y-60);
+endShape();
+
+stroke(0,0,0);
+strokeWeight(4);
+line((x-55)+bop,y,(x+55)+bop,y);
+strokeWeight(0);
+fill(0,0,0);
+rect((x-20)+bop,y,30,15);
+rect((x+20)+bop,y,30,15);
+rect(x+bop,y+20,15,5+(sing/2));
+}
+
+
+else if(type==3){
+  beginShape(); //Apple
+  vertex((x-55), y-6);
+  bezierVertex((x-62), y-49, (x+6), y-47, x, y-25);
+  bezierVertex((x-5), y-47, (x+60), y-52, (x+55), y-7);
+  bezierVertex((x+59), y+24, (x+38), y+75, x, y+41);
+  bezierVertex((x-35), y+79, (x-58), y+27, (x-56), y-5);
+  endShape();
+  //stem
+  fill(117, 74, 30);
+  rect(x,y-35,10,30);
+
+  //glasses
+  stroke(0,0,0);
+  strokeWeight(5);
+  line(x-55,y+bop,x+55,y+bop);
+  strokeWeight(0);
+  //lens
+  fill(0,0,0);
+  beginShape();
+  vertex(x-10,y+bop);
+  vertex(x-15,(y+15)+bop);
+  vertex(x-40,(y+15)+bop);
+  vertex(x-45,y+bop);
+  endShape(CLOSE);
+  beginShape();
+  vertex(x+10,y+bop);
+  vertex(x+15,(y+15)+bop);
+  vertex(x+40,(y+15)+bop);
+  vertex(x+45,y+bop);
+  endShape(CLOSE);
+}
 }
